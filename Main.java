@@ -7,27 +7,29 @@ public class Main {
         checkSumSign();
         printColor();
         compareNumbers();
-        zadanie5();
-        zadanie6();
-        zadanie7();
-        zadanie8();
-        zadanie9();
-        zadanie10();
-        zadanie11();
-        zadanie12();
-        zadanie13();
+        System.out.println(checkSumm(5, 8));
+        checkNumb (125);
+        System.out.println(checkNum(-36));
+        printStr("Ура",3);
+        System.out.println(whatYear(5));
+        integArr();
+        emptyIntArr();
+        arrSix();
+        twoArr();
+        odnMas(6, 8);
     }
 
     public static void printThreeWords() {
+        System.out.println("\nЗадание 1.");
         System.out.println("Orange");
         System.out.println("Banana");
         System.out.println("Apple");
-        System.out.print("\n");
     }
 
 
 
     public static void checkSumSign() {
+        System.out.println("\nЗадание 2.");
         int a = 1;
         int b = -3;
         int c = a + b;
@@ -37,10 +39,10 @@ public class Main {
         } else {
             System.out.println("Сумма отрицательная");
         }
-        System.out.print("\n");
     }
 
     public static void printColor() {
+        System.out.println("\nЗадание 3.");
         int value = 105;
         if (value <= 0) {
             System.out.println("Красный");
@@ -49,10 +51,10 @@ public class Main {
         } else {
             System.out.println("Желтый");
         }
-        System.out.print("\n");
     }
 
     public static void compareNumbers() {
+        System.out.println("\nЗадание 4.");
         int a = 5;
         int b = 1;
 
@@ -61,60 +63,49 @@ public class Main {
         } else {
             System.out.println("a < b");
         }
-        System.out.print("\n");
     }
 
-    public static void zadanie5() {
-        int a = 5;
-        int b = 100;
-        int c = a + b;
-        boolean d = c >= 10 && c <= 20;
-        {
-            System.out.println(d);
+    static boolean checkSumm(int a, int b) {
+        System.out.println("\nЗадание 5.");
+        int sum = a + b;
+        if (sum >= 10 && sum <= 20) return true;
+        else return false;
+    }
+
+
+    public static void checkNumb(int a) {
+        System.out.println("\nЗадание 6.");
+        if (a >= 0) {
+            System.out.println("Число " + a + " положительное");
         }
-        System.out.print("\n");
-    }
-
-
-    public static void zadanie6() {
-        int f = 125;
-
-        if (f >= 0) {
-            System.out.println("Число " + f + " положительное");
-        } else {
-            System.out.println("Число " + f + " отрицательное");
+        else {
+            System.out.println("Число " + a + " отрицательное");
         }
-        System.out.print("\n");
     }
 
-    public static void zadanie7() {
-        int a = 53;
-        boolean b = a < 0;
-        {
-            System.out.println(b);
+    static boolean checkNum(int a) {
+        System.out.println("\nЗадание 7.");
+        if (a < 0) return true;
+        else return false;
+    }
+
+    public static void printStr(String s, int count) {
+        System.out.println("\nЗадание 8.");
+        for (int i = 0; i < count; i++) {
+            System.out.println(s);
         }
-        System.out.print("\n");
-    }
-
-    public static void zadanie8() {
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Ура");
-        }
-        System.out.print("\n");
     }
 
 
-    public static void zadanie9() {
-        int x = 10;
-        if (!(x % 4 == 0) || ((x % 100 == 0) && !(x % 400 == 0))) {
-            System.out.println("false");
-        } else {
-            System.out.println("true");
-        }
-        System.out.print("\n");
+    static boolean whatYear(int y) {
+        System.out.println("\nЗадание 9.");
+        if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)
+            return true;
+        else return false;
     }
 
-    public static void zadanie10() {
+    public static void integArr() {
+        System.out.println("\nЗадание 10.");
         int[] arr = {0, 0, 0, 0, 0, 1, 1, 1, 1, 1};
 
         for (int i = 0; i < arr.length; i++) {
@@ -124,10 +115,10 @@ public class Main {
                 arr[i]--;
         }
         System.out.println(Arrays.toString(arr));
-        System.out.print("\n");
     }
 
-    public static void zadanie11() {
+    public static void emptyIntArr() {
+        System.out.println("\nЗадание 11.");
         int size = 100;
         int[] fillArr = new int[size];
         for (int i = 0; i < fillArr.length; i++) {
@@ -135,12 +126,11 @@ public class Main {
             System.out.print(fillArr[i] + " ");
         }
         System.out.print("\n");
-        System.out.print("\n");
     }
 
 
-    public static void zadanie12()
-    {
+    public static void arrSix() {
+        System.out.println("\nЗадание 12.");
         int[] mas = { 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 };
         int maxMas = mas.length;
         for(int i = 0; i < maxMas; i++) {
@@ -151,11 +141,10 @@ public class Main {
             System.out.print (i + "-" + mas[i]+" ");
         }
         System.out.print("\n");
-        System.out.print("\n");
     }
 
-
-    public static void zadanie13() {
+    public static void twoArr() {
+        System.out.println("\nЗадание 13.");
         int[][] kvadrat = new int[5][5];
         for (int i = 0; i < kvadrat.length; i++) {
             for (int j = 0; j < kvadrat.length; j++) {
@@ -165,18 +154,14 @@ public class Main {
             System.out.println();
         }
     }
-}
 
-class zadanie14 {
-    public static void main (String args[]) {
-        int len = 6;
-        int initialValue = 8;
+    public static void odnMas(int len, int initialValue) {
+        System.out.println("\nЗадание 14.");
+        int[] arr = new int[len];
+        for (int i = 0; i < len; i++) {
+            arr[i] = initialValue;
+            System.out.print("[" + i + "]" + arr[i] + " ");
+        }
+        System.out.print("\n");
     }
-public static void zadanie14(int len, int initialValue) {
-    int[] arr = new int[len];
-    for (int i = 0; i < len; i++) {
-        arr[i] = initialValue;
-        System.out.print("[" + i + "]" + arr[i] + " ");
-    }
-}
 }
