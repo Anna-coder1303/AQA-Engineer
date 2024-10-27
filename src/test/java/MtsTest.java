@@ -34,7 +34,7 @@ public class MtsTest {
     public void verifyLink() {
         WebElement Link = driver.findElement(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a"));
         Link.click();
-        String expectedUrl = "";
+        String expectedUrl = "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/";
         String actualUrl = driver.getCurrentUrl();
         Assert.assertEquals(actualUrl, expectedUrl, "Ссылка работает некорректно");
     }
