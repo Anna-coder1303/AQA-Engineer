@@ -67,7 +67,6 @@ public class MtsTest {
         config.enterAmount("5");
         config.enterEmail("test@test.com");
         config.clickContinueButton();
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         config.switchToBepaidIframe();
         assertEquals("5.00 BYN", config.checksum(), "Суммма неверна");
 
@@ -78,7 +77,6 @@ public class MtsTest {
         config.enterAmount("5");
         config.enterEmail("test@test.com");
         config.clickContinueButton();
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         config.switchToBepaidIframe();
         assertEquals("Оплата: Услуги связи Номер:375297777777", config.checkphone(), "Телефон отображается неверно");
     }
@@ -89,7 +87,6 @@ public class MtsTest {
         config.enterAmount("5");
         config.enterEmail("test@test.com");
         config.clickContinueButton();
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         config.switchToBepaidIframe();
         assertEquals("Номер карты", config.cardFieldsPresent(), "Поле с номером карты отображается неверно");
     }
@@ -100,7 +97,6 @@ public class MtsTest {
         config.enterAmount("5");
         config.enterEmail("test@test.com");
         config.clickContinueButton();
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
         config.switchToBepaidIframe();
         assertTrue(config.paymentLogosDisplayedFrame(), "Логотипы платежных систем не отображаются");
     }
