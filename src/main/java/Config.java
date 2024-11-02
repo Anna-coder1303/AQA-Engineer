@@ -1,11 +1,17 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 
 public class Config {
     private final WebDriver driver;
-
+    private final WebDriverWait wait;
 
     //Локаторы
 
@@ -31,7 +37,7 @@ public class Config {
     private WebElement emailField;
 
     @FindBy(xpath = "//*[@id='pay-connection']/button")
-    private WebElement continButton;
+    private WebElement continueButton;
 
     @FindBy(xpath = "//*[@id='pay-section']/div/div/div[2]/section/div/div[1]/div[1]/div[2]")
     private WebElement serviceDropdown;
@@ -39,8 +45,8 @@ public class Config {
     @FindBy(xpath = "//*[@id='pay-section']/div/div/div[2]/section/div/div[1]/div[1]/div[2]/button/span[1]")
     private WebElement enterBlockTitle;
 
-    @FindBy(xpath = "//span[contains(text(), '5.00 BYN')]")
-    private WebElement correctAmount;
+    @FindBy(xpath = "/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/img[1]")
+    private WebElement paymentLogosFrame;
 
     //Конструкторы
 
@@ -52,7 +58,8 @@ public class Config {
 
     public Config(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this); // Инициализация элементов
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        PageFactory.initElements(driver, this);                                // Инициализация элементов
     }
 
     public String getBlockTitleText() {
@@ -67,8 +74,8 @@ public class Config {
         detailsLink.click();
     }
 
-    public void clickContinButton() {
-        continButton.click();
+    public void clickContinueButton() {
+        continueButton.click();
     }
 
     public void enterPhone(String phoneNumber) {
@@ -94,4 +101,33 @@ public class Config {
     public void selectBlockTitle() {
         enterBlockTitle.click();
     }
+
+    public String checksum() {
+        WebElement sumElement = waitForElementVisibility(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[1]/span[1]"));
+        return sumElement.getText();
+    }
+
+    public String checkphone() {
+        WebElement phoneElement = waitForElementVisibility(By.xpath("//span[contains(text(), 'Оплата: Услуги связи')]"));
+        return phoneElement.getText();
+    }
+
+    public WebElement waitForElementVisibility(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public void switchToBepaidIframe() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bepaid-iframe")));
+        driver.switchTo().frame(driver.findElement(By.className("bepaid-iframe")));
+    }
+
+    public String cardFieldsPresent() {
+        WebElement cardElement = waitForElementVisibility(By.xpath("//label[contains(text(), 'Номер карты')]"));
+        return cardElement.getText();
+    }
+
+    public boolean paymentLogosDisplayedFrame() {
+       return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div"))).isDisplayed();
+    }
 }
+

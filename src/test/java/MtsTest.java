@@ -1,10 +1,10 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -50,7 +50,8 @@ public class MtsTest {
         config.enterPhone("297777777");
         config.enterAmount("5");
         config.enterEmail("test@test.com");
-        config.clickContinButton();
+        config.clickContinueButton();
+        config.switchToBepaidIframe();
     }
 
     @Test
@@ -58,5 +59,49 @@ public class MtsTest {
         config.selectServiceType();
         config.selectBlockTitle();
         assertTrue(config.areFieldsPresent(), "Поля не отображаются для услуги");
+    }
+
+    @Test
+    public void testCorrectSum() {
+        config.enterPhone("297777777");
+        config.enterAmount("5");
+        config.enterEmail("test@test.com");
+        config.clickContinueButton();
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        config.switchToBepaidIframe();
+        assertEquals("5.00 BYN", config.checksum(), "Суммма неверна");
+
+    }
+    @Test
+    public void testCorrectPhone() {
+        config.enterPhone("297777777");
+        config.enterAmount("5");
+        config.enterEmail("test@test.com");
+        config.clickContinueButton();
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        config.switchToBepaidIframe();
+        assertEquals("Оплата: Услуги связи Номер:375297777777", config.checkphone(), "Телефон отображается неверно");
+    }
+
+    @Test
+    public void testCardField() { //Аналогично для других вариантов
+        config.enterPhone("297777777");
+        config.enterAmount("5");
+        config.enterEmail("test@test.com");
+        config.clickContinueButton();
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        config.switchToBepaidIframe();
+        assertEquals("Номер карты", config.cardFieldsPresent(), "Поле с номером карты отображается неверно");
+    }
+
+    @Test
+    public void testPaymentLogosDisplayedFrame() {
+        config.enterPhone("297777777");
+        config.enterAmount("5");
+        config.enterEmail("test@test.com");
+        config.clickContinueButton();
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+        config.switchToBepaidIframe();
+        assertTrue(config.paymentLogosDisplayedFrame(), "Логотипы платежных систем не отображаются");
     }
 }
