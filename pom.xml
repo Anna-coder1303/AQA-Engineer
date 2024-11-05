@@ -16,6 +16,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -79,6 +80,7 @@
                     <reportVersion>2.18.1</reportVersion>
                 </configuration>
             </plugin>
+            <!-- Surefire плагин (для запуска тестов и генерации отчетов) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
