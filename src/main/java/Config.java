@@ -45,9 +45,6 @@ public class Config {
     @FindBy(xpath = "//*[@id='pay-section']/div/div/div[2]/section/div/div[1]/div[1]/div[2]/button/span[1]")
     private WebElement enterBlockTitle;
 
-    @FindBy(xpath = "/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[2]/div/div/img[1]")
-    private WebElement paymentLogosFrame;
-
     //Конструкторы
 
     public void acceptCookies() {
